@@ -9,7 +9,7 @@ public class SourcesManager {
     public static void start() throws Exception {
         if (sources.size() == 0) {
             sources.add(new Yandex());
-            sources.add(new Rambler());
+//            sources.add(new Rambler());
         } else {
             throw new Exception("Sources monitor already started!");
         }

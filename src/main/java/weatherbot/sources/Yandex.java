@@ -2,6 +2,7 @@ package weatherbot.sources;
 
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import weatherbot.models.WeatherData;
 import weatherbot.models.WeatherView;
 import weatherbot.parser.Parser;
 
@@ -10,12 +11,10 @@ import java.net.URL;
 
 class Yandex implements Source {
 
-	private static final String url = "https://yandex.ru/pogoda/moscow/details";
-
-	private WeatherView view;
+	private static final String URL = "https://yandex.ru/pogoda/moscow/details";
 
 	public String getUrl() {
-		return url;
+		return URL;
 	}
 
 	public String getDate() {
@@ -23,7 +22,7 @@ class Yandex implements Source {
 	}
 
 	public WeatherView getView() throws IOException {
-		Elements todayWeatherTable = Parser.getDocument(new URL(url))
+		Elements todayWeatherTable = Parser.getDocument(new URL(URL))
 				.select("tbody[class=weather-table__body]")
 				.first()
 				.select("tr[class=weather-table__row]");
@@ -93,24 +92,16 @@ class Yandex implements Source {
 				.first()
 				.text();
 
-		return new WeatherView("Yandex",
-		                       morningTemperature,
-		                       morningPressure,
-		                       morningHumidity,
-		                       morningWind,
-		                       afternoonTemperature,
-		                       afternoonPressure,
-		                       afternoonHumidity,
-		                       afternoonWind,
-		                       eveningTemperature,
-		                       eveningPressure,
-		                       eveningHumidity,
-		                       eveningWind,
-		                       nightTemperature,
-		                       nightPressure,
-		                       nightHumidity,
-		                       nightWind);
-	}
+		WeatherData morningWeatherData   = new WeatherData(morningTemperature, morningPressure, morningHumidity, morningWind);
+		WeatherData eveningWeatherData   = new WeatherData(eveningTemperature, eveningPressure, eveningHumidity, eveningWind);
+		WeatherData afternoonWeatherData = new WeatherData(afternoonTemperature, afternoonPressure, afternoonHumidity, afternoonWind);
+		WeatherData nightWeatherData     = new WeatherData(nightTemperature, nightPressure, nightHumidity, nightWind);
 
+		return new WeatherView("Yandex",
+		                       morningWeatherData,
+		                       eveningWeatherData,
+		                       afternoonWeatherData,
+		                       nightWeatherData);
+	}
 
 }

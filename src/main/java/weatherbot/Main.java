@@ -1,24 +1,31 @@
 package weatherbot;
 
-import weatherbot.sources.Source;
+import org.telegram.telegrambots.ApiContextInitializer;
+import weatherbot.bot.Bot;
 import weatherbot.sources.SourcesManager;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
+		SourcesManager.start();
+		ApiContextInitializer.init();
 
-        SourcesManager.start();
+		Bot bot = new Bot();
 
-        ArrayList<Source> sources = SourcesManager.getSources();
+		try {
+			bot.register();
+			bot.startPolling();
+		} catch (IOException e){
+			e.printStackTrace();
+		}
 
-//        for (Source src : sources) {
-//            System.out.println(src.getView().format());
-//        }
 
-	    sources.get(1).getView();
-    }
+//		ArrayList<Source> sources = SourcesManager.getSources();
+//
+//		for (Source src : sources) {
+//			System.out.println(src.getView().format());
+//		}
+
+	}
 }

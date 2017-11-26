@@ -30,11 +30,11 @@ class Rambler implements Source {
 
 		Document document = Parser.getDocument(new URL(url + date));
 
-		System.out.println(document);
+//		System.out.println(document);
 
 		Elements weatherTable  = document.select("div.weather-detailed");
 
-		System.out.println(weatherTable);
+//		System.out.println(weatherTable);
 
 		return null;
 	}
