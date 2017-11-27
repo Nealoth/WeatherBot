@@ -24,8 +24,7 @@ public class Config {
 
 	public Properties getProperties() {
 		if (properties == null) {
-			try {
-				FileInputStream fileInputStream = new FileInputStream(PATH);
+			try (FileInputStream fileInputStream = new FileInputStream(PATH)){
 				properties = new Properties();
 				properties.load(fileInputStream);
 			} catch (IOException e) {

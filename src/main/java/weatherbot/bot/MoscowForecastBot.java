@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
-import weatherbot.sources.SourcesManager;
+import weatherbot.providers.ProviderManager;
 
 import java.io.IOException;
 
@@ -22,7 +22,7 @@ class MoscowForecastBot extends TelegramLongPollingBot {
 			try {
 				message = new SendMessage()
 						.setChatId(update.getMessage().getChatId())
-						.setText(SourcesManager.getSources().get(0).getView().format());
+						.setText(ProviderManager.getSources().get(0).getView().format());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

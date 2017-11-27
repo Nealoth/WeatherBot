@@ -1,9 +1,9 @@
-package weatherbot.sources;
+package weatherbot.providers;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import weatherbot.models.WeatherView;
-import weatherbot.parser.Parser;
+import weatherbot.parser.HtmlParser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-class Rambler implements Source {
+class RamblerProvider implements Provider {
 
 	private static final String url = "https://weather.rambler.ru/v-moskve/";
 
@@ -28,7 +28,7 @@ class Rambler implements Source {
 				.format(new Date())
 				.toLowerCase();
 
-		Document document = Parser.getDocument(new URL(url + date));
+		Document document = HtmlParser.getDocument(new URL(url + date));
 
 //		System.out.println(document);
 

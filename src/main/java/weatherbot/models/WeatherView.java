@@ -17,11 +17,15 @@ public class WeatherView implements FormattedWeather {
 	}
 
 	public String format() {
-		return sourceTitle + "\n\n" +
-				"Утро: \n" + morning.format() + "\n" +
-				"День: \n" + afternoon.format() + "\n" +
-				"Вечер: \n" + evening.format() + "\n" +
-				"Ночь: \n" + night.format() + "\n";
 
+		StringBuilder formatted = new StringBuilder();
+
+		formatted.append(sourceTitle).append("\n")
+				.append("Утро: \n").append(morning.format()).append("\n")
+				.append("День: \n").append(afternoon.format()).append("\n")
+				.append("Вечер: \n").append(evening.format()).append("\n")
+				.append("Ночь: \n").append(night.format()).append("\n");
+
+		return formatted.toString();
 	}
 }

@@ -46,9 +46,13 @@ public class WeatherData implements FormattedWeather {
 	}
 
 	public String format() {
-		return "       Температура: " + getTemperature() + "\n" +
-				"       Давление: " + getPressure() + "\n" +
-				"       Влажность: " + getHumidity() + "\n" +
-				"       Ветер: " + getWind() + "\n";
+		StringBuilder formatted = new StringBuilder();
+
+		formatted.append("       Температура: ").append(getTemperature()).append("\n");
+		formatted.append("       Давление: ").append(getPressure()).append("\n");
+		formatted.append("       Влажность: ").append(getHumidity()).append("\n");
+		formatted.append("       Ветер: ").append(getWind()).append("\n");
+
+		return formatted.toString();
 	}
 }

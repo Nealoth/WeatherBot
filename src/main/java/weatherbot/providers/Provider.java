@@ -1,10 +1,10 @@
-package weatherbot.sources;
+package weatherbot.providers;
 
 import weatherbot.models.WeatherView;
 
 import java.io.IOException;
 
-public interface Source {
+public interface Provider {
 
     String getUrl();
 
